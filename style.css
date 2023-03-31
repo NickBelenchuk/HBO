@@ -14,6 +14,9 @@ body {
   background: #000000;
   margin: 0 auto;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 
 .container {
   padding: 0 10px;
@@ -100,7 +103,7 @@ body {
 
 .hero__block {
   position: absolute;
-  top: 59%;
+  bottom: 160px;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -117,46 +120,25 @@ body {
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-input[type="range"] {
-  overflow: hidden;
+.range {
   max-width: 500px;
   width: 100%;
   -webkit-appearance: none;
   background-color: rgba(255, 255, 255, 0.5);
-}
-
-input[type="range"]::-webkit-slider-runnable-track {
   height: 1px;
-  -webkit-appearance: none;
 }
-
-input[type="range"]::-webkit-slider-thumb {
-  width: 10px;
-  -webkit-appearance: none;
-  height: 0px;
-  cursor: ew-resize;
-  box-shadow: -80px 0 0 80px #e3b100;
-}
-
-/** FF*/
-input[type="range"]::-moz-range-progress {
+.range__current {
+  width: 100px;
+  height: 1px;
   background-color: #e3b100;
-}
-input[type="range"]::-moz-range-track {
-  background-color: rgba(255, 255, 255, 0.5);
-}
-/* IE*/
-input[type="range"]::-ms-fill-lower {
-  background-color: #e3b100;
-}
-input[type="range"]::-ms-fill-upper {
-  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 50000;
 }
 
 .play {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .play__icon {
@@ -198,14 +180,23 @@ input[type="range"]::-ms-fill-upper {
 }
 
 .original__content {
-  display: flex;
-  gap: 24px;
-  overflow-x: scroll;
-  -ms-overflow-style: none;
-  /* scrollbar-width: none; */
+  position: relative;
+  height: 300px;
 }
 
-.original__content::-webkit-scrollbar {
+.cards {
+  display: flex;
+  max-width: 1590px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  column-gap: 24px;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  z-index: 10000;
+}
+.cards::-webkit-scrollbar {
   display: none;
 }
 
@@ -217,27 +208,10 @@ input[type="range"]::-ms-fill-upper {
   width: 210px;
   height: 300px;
   border-radius: 12px;
-  background: url("./image/img1.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 100;
-}
-
-.card2 > .card__image {
-  background: url("./image/img2.png");
-}
-.card3 > .card__image {
-  background: url("./image/img3.png");
-}
-.card4 > .card__image {
-  background: url("./image/img4.png");
-}
-.card5 > .card__image {
-  background: url("./image/img5.png");
-}
-.card6 > .card__image {
-  background: url("./image/img6.png");
 }
 
 .card__content {
@@ -471,21 +445,3 @@ input[type="range"]::-ms-fill-upper {
     rgba(13, 0, 123, 0.7) 100%
   );
 }
-
-/* doesn't work */
-
-/* .item-left:not(:hover) .item-center,
-.item-right:not(:hover) .item-center {
-  opacity: 0.25;
-  background: linear-gradient(90deg, #000000 0%, rgba(13, 0, 123, 0.25) 100%);
-} */
-
-/* .item-left:hover,
-.item-right:hover {
-  opacity: 1;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 89, 193, 0.5) 0%,
-    rgba(13, 0, 123, 0.5) 100%
-  );
-} */
