@@ -104,53 +104,64 @@
             <button class="signin__card-btn">Choose</button>
           </div>
         </div>
-        <div class="signin__account">
-          <h4 class="signin-subheader signin__account-subhader">
-            Create an account
-          </h4>
+        <form>
+          <div class="signin__account">
+            <h4 class="signin-subheader signin__account-subhader">
+              Create an account
+            </h4>
 
-          <div class="account__naming">
+            <div class="account__naming">
+              <input
+                class="input input-name"
+                type="text"
+                name="name"
+                placeholder="Your name"
+                required
+              />
+              <input
+                class="input input-surname"
+                type="text"
+                name="surname"
+                placeholder="Your last name"
+                required
+              />
+            </div>
             <input
-              class="input input-name"
-              type="text"
-              name="name"
-              placeholder="Your name"
+              class="input input-email"
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
             />
             <input
-              class="input input-surname"
-              type="text"
-              name="surname"
-              placeholder="Your last name"
+              required
+              class="input input-password"
+              type="password"
+              name="password"
+              placeholder="Password"
             />
-          </div>
-          <input
-            class="input input-email"
-            type="email"
-            name="email"
-            placeholder="Email"
-          />
-          <input
-            class="input input-password"
-            type="password"
-            name="password"
-            placeholder="Password"
-          />
-          <div class="signin__check-block">
-            <input id="checkbox-spam" type="checkbox" name="checkbox" />
-            <label for="checkbox-spam" class="checkbox-custom"></label>
-            <p class="spam">
-              Use my email address to send marketing promotions and offers from
-              HBO Max (a WarnerMedia company) and Affiliates via email, social
-              media and other channels
+            <label class="signin__check-block">
+              <input
+                id="checkbox-spam"
+                type="checkbox"
+                name="checkbox"
+                required
+              />
+              <label for="checkbox-spam" class="checkbox-custom"></label>
+              <p class="spam">
+                Use my email address to send marketing promotions and offers
+                from HBO Max (a WarnerMedia company) and Affiliates via email,
+                social media and other channels
+              </p>
+            </label>
+            <button type="submit" class="create__btn">Create</button>
+            <p class="privacy">
+              To withdraw your consent (including any consent you have
+              previously given) and to learn more about your rights and how to
+              exercise them, please read the <span>Privacy Policy.</span>
             </p>
           </div>
-          <button class="create__btn">Create</button>
-          <p class="privacy">
-            To withdraw your consent (including any consent you have previously
-            given) and to learn more about your rights and how to exercise them,
-            please read the <span>Privacy Policy.</span>
-          </p>
-        </div>
+        </form>
       </div>
     </section>
   </body>
