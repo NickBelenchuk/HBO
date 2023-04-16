@@ -1,9 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
-
+@import "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap";
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Lato";
+  font-style: normal;
 }
 
 a {
@@ -14,7 +15,6 @@ body {
   background: #000000;
   margin: 0 auto;
 }
-
 body::-webkit-scrollbar {
   display: none;
 }
@@ -30,14 +30,37 @@ body::-webkit-scrollbar {
   padding: 26px 0;
 }
 
-.container__header,
-.header__nav,
-.header__nav-left,
+.container__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 470px;
+  margin-left: 15px;
+}
+
+.header__nav-left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 134px;
+  gap: 10px;
+}
+
 .header__nav-right {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  max-width: 221px;
 }
 
 .logo-link {
@@ -49,25 +72,8 @@ body::-webkit-scrollbar {
   height: 40.5px;
 }
 
-.header__nav {
-  max-width: 470px;
-  margin-left: 15px;
-  /* padding: 0 10px; */
-}
-
-.header__nav-left {
-  max-width: 134px;
-  gap: 10px;
-}
-
-.header__nav-right {
-  max-width: 221px;
-}
-
 .link {
   display: flex;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 13px;
   line-height: 16px;
@@ -76,7 +82,6 @@ body::-webkit-scrollbar {
   text-transform: uppercase;
   gap: 10px;
 }
-
 .link:hover {
   color: #ffffff;
 }
@@ -84,8 +89,6 @@ body::-webkit-scrollbar {
 .header__btn {
   width: 121px;
   height: 40px;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 700;
   font-size: 15px;
   line-height: 18px;
@@ -100,7 +103,6 @@ body::-webkit-scrollbar {
   align-items: center;
   justify-content: center;
 }
-
 .header__btn:hover {
   background: #026ee9;
 }
@@ -113,8 +115,7 @@ body::-webkit-scrollbar {
   max-width: 1274px;
   height: 595px;
   width: 100%;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 63.19%, #000000 100%),
-    url("./image/hero__bg.png");
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 63.19%, #000000 100%), url("../image/hero__bg.png");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -130,6 +131,7 @@ body::-webkit-scrollbar {
 }
 
 .hero__block-signature {
+  max-width: -moz-fit-content;
   max-width: fit-content;
   width: 100%;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -142,6 +144,7 @@ body::-webkit-scrollbar {
   background-color: rgba(255, 255, 255, 0.5);
   height: 1px;
 }
+
 .range__current {
   width: 100px;
   height: 1px;
@@ -164,23 +167,20 @@ body::-webkit-scrollbar {
   height: 40px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+          backdrop-filter: blur(2.5px);
   margin-right: 10px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
-
 .play__icon:hover {
   background: rgba(255, 255, 255, 0.2);
 }
-
 .play__icon svg {
   margin-left: 3px;
 }
 
 .play__text {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 18px;
@@ -188,8 +188,6 @@ body::-webkit-scrollbar {
 }
 
 .original__header {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 900;
   font-size: 32px;
   line-height: 38px;
@@ -208,7 +206,8 @@ body::-webkit-scrollbar {
   position: absolute;
   top: 0;
   left: 0;
-  column-gap: 24px;
+  -moz-column-gap: 24px;
+       column-gap: 24px;
   overflow-x: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -220,6 +219,22 @@ body::-webkit-scrollbar {
 
 .card {
   position: relative;
+}
+.card__active .card__image {
+  transition: all 0.3s ease-in-out;
+  filter: blur(5px);
+  z-index: 10;
+}
+.card__active .card__content {
+  display: block;
+}
+.card:hover .card__image {
+  transition: all 0.3s ease-in-out;
+  filter: blur(5px);
+  z-index: 10;
+}
+.card:hover .card__content {
+  display: block;
 }
 
 .card__image {
@@ -253,18 +268,13 @@ body::-webkit-scrollbar {
 }
 
 .card__rating-rate {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
   color: #e3b100;
 }
 
-.card__rating-date,
-.card__season {
-  font-family: "Lato";
-  font-style: normal;
+.card__rating-date {
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
@@ -272,13 +282,15 @@ body::-webkit-scrollbar {
 }
 
 .card__season {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: rgba(255, 255, 255, 0.5);
   font-size: 14px;
   margin-bottom: 7px;
 }
 
 .card__title {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 900;
   font-size: 18px;
   line-height: 22px;
@@ -287,8 +299,6 @@ body::-webkit-scrollbar {
 }
 
 .card__about {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 11px;
   line-height: 13px;
@@ -311,23 +321,13 @@ body::-webkit-scrollbar {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
-.card__btn-icon {
-  height: 14px;
-  width: 11px;
-}
-
 .card__btn:hover {
   background: #0060ce;
 }
 
-.card:hover .card__image {
-  transition: all 0.3s ease-in-out;
-
-  filter: blur(5px);
-  z-index: 10;
-}
-.card:hover .card__content {
-  display: block;
+.card__btn-icon {
+  height: 14px;
+  width: 11px;
 }
 
 .subsription {
@@ -339,8 +339,6 @@ body::-webkit-scrollbar {
 }
 
 .subsription__header {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 900;
   font-size: 32px;
   line-height: 38px;
@@ -351,8 +349,6 @@ body::-webkit-scrollbar {
 .item__header {
   text-align: center;
   margin-top: 32px;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 900;
   font-size: 30px;
   line-height: 36px;
@@ -364,15 +360,19 @@ body::-webkit-scrollbar {
   width: 502px;
   height: 296px;
   position: relative;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 89, 193, 0.7) 0%,
-    rgba(13, 0, 123, 0.7) 100%
-  );
+  background: linear-gradient(90deg, rgba(0, 89, 193, 0.7) 0%, rgba(13, 0, 123, 0.7) 100%);
   border: 1px solid rgba(0, 89, 193, 0.5);
   border-radius: 12px;
   transition: all 0.3s ease-in-out;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.item:hover {
+  z-index: 2;
+}
+.item:not(.item-center):hover {
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+  background: linear-gradient(90deg, rgba(0, 89, 193, 0.7) 0%, rgba(13, 0, 123, 0.7) 100%);
 }
 
 .item__list {
@@ -381,8 +381,6 @@ body::-webkit-scrollbar {
 }
 
 .item__list-item {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
@@ -399,10 +397,7 @@ body::-webkit-scrollbar {
   margin-top: 32px;
 }
 
-.btn__yellow,
-.btn__def {
-  font-family: "Lato";
-  font-style: normal;
+.btn__yellow {
   font-weight: 900;
   font-size: 18px;
   line-height: 22px;
@@ -412,8 +407,6 @@ body::-webkit-scrollbar {
   border-radius: 12px;
   cursor: pointer;
   border: none;
-}
-.btn__yellow {
   background: #e38b00;
   transition: all 0.3s ease-in-out;
 }
@@ -422,11 +415,19 @@ body::-webkit-scrollbar {
 }
 
 .btn__def {
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+  width: 147px;
+  height: 40px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
   background: #060644;
   border: 1px solid #e38b00;
   transition: all 0.3s ease-in-out;
 }
-
 .btn__def:hover {
   background: #0c0c7a;
   border: 1px solid #e38b00;
@@ -451,25 +452,10 @@ body::-webkit-scrollbar {
   margin-left: 12px;
 }
 
-.item:hover {
-  z-index: 2;
-}
-
-.item:not(.item-center):hover {
-  transition: all 0.3s ease-in-out;
-  opacity: 1;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 89, 193, 0.7) 0%,
-    rgba(13, 0, 123, 0.7) 100%
-  );
-}
-
 .signin {
-  background-image: url(./image/bg_sign_in.png);
+  background-image: url("../image/bg_sign_in.png");
   background-repeat: no-repeat;
   background-position: 50% 65%;
-  /* opacity: 0.1; */
 }
 
 .signin__account {
@@ -481,8 +467,6 @@ body::-webkit-scrollbar {
 .signin-header {
   padding-top: 24px;
   text-align: center;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 900;
   font-size: 32px;
   line-height: 38px;
@@ -492,8 +476,6 @@ body::-webkit-scrollbar {
 
 .signin-subheader {
   text-align: center;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;
@@ -518,11 +500,7 @@ body::-webkit-scrollbar {
   width: 100%;
   height: 250px;
   color: #ffffff;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 89, 193, 0.5) 0%,
-    rgba(13, 0, 123, 0.5) 100%
-  );
+  background: linear-gradient(90deg, rgba(0, 89, 193, 0.5) 0%, rgba(13, 0, 123, 0.5) 100%);
   border-radius: 12px;
 }
 
@@ -540,16 +518,13 @@ body::-webkit-scrollbar {
 }
 
 .signin__card-type {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 900;
   font-size: 30px;
   line-height: 36px;
   text-transform: capitalize;
 }
+
 .signin__card-price {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 500;
   font-size: 24px;
   line-height: 29px;
@@ -559,8 +534,6 @@ body::-webkit-scrollbar {
   max-width: 490px;
   width: 100%;
   padding: 0 32px;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -572,8 +545,6 @@ body::-webkit-scrollbar {
   bottom: 30px;
   right: 32px;
   text-align: center;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 900;
   font-size: 18px;
   line-height: 22px;
@@ -596,8 +567,6 @@ body::-webkit-scrollbar {
   outline: none;
   background: #000000;
   border: none;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
@@ -606,28 +575,33 @@ body::-webkit-scrollbar {
   border-bottom: 2px solid #d9d9d9;
   transition: all 0.3s ease-in-out;
 }
+.input:focus {
+  border-bottom: 2px solid #e38b00;
+}
 
-.input-name,
+.input-name {
+  display: flex;
+  max-width: 350px;
+  width: 100%;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
 .input-surname {
   display: flex;
   max-width: 350px;
   width: 100%;
   gap: 32px;
-}
-
-.input-email,
-.input-password {
-  width: 100%;
-}
-
-.input-name,
-.input-surname,
-.input-email {
   margin-bottom: 24px;
 }
 
-.input:focus {
-  border-bottom: 2px solid #e38b00;
+.input-email {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.input-password {
+  width: 100%;
 }
 
 .signin__check-block {
@@ -636,8 +610,6 @@ body::-webkit-scrollbar {
 }
 
 .spam {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
@@ -655,31 +627,23 @@ body::-webkit-scrollbar {
   color: #ffffff;
   padding: 11px 0;
   cursor: pointer;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 700;
   font-size: 15px;
   line-height: 18px;
   margin-bottom: 16px;
   transition: all 0.3s ease-in-out;
 }
-
 .create__btn:hover {
   background: #026ee9;
 }
 
 .privacy {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
   color: #fff;
 }
-
 .privacy span {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
@@ -692,7 +656,6 @@ body::-webkit-scrollbar {
   opacity: 0;
   display: none;
 }
-
 #checkbox-spam ~ label::before {
   content: "";
   text-align: center;
@@ -709,3 +672,199 @@ body::-webkit-scrollbar {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
   border: 1px solid #e38b00;
 }
+
+.container-shows,
+.container-movies {
+  margin-bottom: 50px;
+}
+.container-shows .cards,
+.container-movies .cards {
+  position: relative;
+}
+
+.container-cartoons .cards {
+  position: relative;
+}
+
+.content__show {
+  margin-top: 20px;
+}
+
+.footer__show {
+  height: 236px;
+  background-image: url(../image/footer__bg.png);
+  background-repeat: no-repeat;
+  background-position: 50% 75%;
+  margin-top: 28px;
+  padding-top: 25px;
+}
+.footer__show .container__footer {
+  display: flex;
+  padding: 0 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer__show .container__footer .support__block {
+  padding-bottom: 25px;
+}
+.footer__show .container__footer .support__block--text {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fff;
+  text-transform: capitalize;
+  margin-bottom: 17px;
+}
+.footer__show .container__footer .support__block .feedback {
+  display: flex;
+  gap: 10px;
+}
+.footer__show .container__footer .support__block .feedback__message {
+  background: #0059C1;
+  border-radius: 6px;
+  padding: 7px 23px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+}
+.footer__show .container__footer .support__block .feedback__message p {
+  font-weight: 700;
+  max-width: 223px;
+  font-size: 13px;
+  line-height: 16px;
+  color: #FFFFFF;
+}
+.footer__show .container__footer .support__block .feedback__email {
+  display: flex;
+  background: #0059C1;
+  width: 44px;
+  border-radius: 6px;
+  padding: 3px 10px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+}
+.footer__show .container__footer .support__block .feedback__call {
+  display: flex;
+  background: #0059C1;
+  width: 44px;
+  border-radius: 6px;
+  padding: 3px 10px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+}
+.footer__show .container__footer .support__block .feedback :hover {
+  background: #026ee9;
+  transition: 0.3s all ease-in-out;
+}
+.footer__show .navigation__block {
+  display: flex;
+  max-width: 430px;
+  width: 100%;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
+}
+.footer__show .navigation__block .block__link {
+  display: flex;
+  -moz-column-gap: 16px;
+       column-gap: 16px;
+  row-gap: 21px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 96px;
+}
+.footer__show .navigation__block .block__link--item {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #707070;
+  text-transform: capitalize;
+}
+.footer__show .navigation__block .block__link--item:hover {
+  color: #FFFFFF;
+}
+.footer__show .navigation__block .block__link .hbo__max {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration-line: underline;
+  background: linear-gradient(180deg, #0059C1 0%, #9E00FF 77.08%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: uppercase;
+  border-bottom: 1px solid #9E00FF;
+}
+.footer__show .navigation__block .block__link .hbo__max:hover {
+  font-size: 15px;
+  background: linear-gradient(180deg, #0277fc 0%, #a81cff 70.08%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: uppercase;
+  border-bottom: 1px solid #9e0afa;
+}
+.footer__show .navigation__block .block__link .block__link--item:nth-last-child(-n+3) {
+  font-size: 12px !important;
+  line-height: 14px !important;
+}
+.footer__show .navigation__block img {
+  width: 63px;
+}
+.footer__show .navigation__block .copyright {
+  font-weight: 400;
+  max-width: 224px;
+  font-size: 10px;
+  line-height: 12px;
+  text-align: center;
+  color: #707070;
+  margin: 16px 0;
+}
+.footer__show .enjoy__block {
+  padding-bottom: 25px;
+}
+.footer__show .enjoy__block--text {
+  text-align: end;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  margin-bottom: 12px;
+  color: #FFFFFF;
+}
+.footer__show .enjoy__block--img {
+  width: 215px;
+}
+
+.content__show .container-shows .original__content,
+.content__show .container-movies .original__content,
+.content__show .container-cartoons .original__content {
+  position: relative;
+}
+.content__show .container-shows .original__content .arrow__right,
+.content__show .container-movies .original__content .arrow__right,
+.content__show .container-cartoons .original__content .arrow__right {
+  position: absolute;
+  right: -33px;
+  top: 44.5%;
+  z-index: 100000;
+  cursor: pointer;
+}
+.content__show .container-shows .original__content .arrow__right:hover path,
+.content__show .container-movies .original__content .arrow__right:hover path,
+.content__show .container-cartoons .original__content .arrow__right:hover path {
+  transition: all 0.3s ease-in-out;
+  fill: #e3b100;
+  fill-opacity: 1;
+}
+.content__show .container-shows .original__content .cards,
+.content__show .container-movies .original__content .cards,
+.content__show .container-cartoons .original__content .cards {
+  -moz-column-gap: 16px;
+       column-gap: 16px;
+}/*# sourceMappingURL=style.css.map */
