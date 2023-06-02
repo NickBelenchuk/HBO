@@ -1,86 +1,111 @@
 import { DataMovies } from "./data.js";
 
-// import butler from "../assets/images/actors/butler.jpg";
-// import kek from "../assets/images/1.jpg";
-
 function fillMovieDetails(id) {
   const movie = DataMovies.find((movie) => movie.id === id);
 
-  if (movie) {
-    const movieHeader = document.querySelector(".movie__header");
-    const ratingCurrent = document.querySelector(".rating__current");
-    const description = document.querySelector(".about__movie-text");
-    const genreBlock = document.querySelector(".about__movie-genre");
-    const castBlock = document.querySelector(".cast__block");
-    const ratingInput = document.querySelector(".popup__input");
-    const ratingBtn = document.querySelector(".popup__btn");
-    const popup = document.querySelector(".popup");
-    const movieImg = document.querySelector(".movie__block-img");
+  const movieHeader = document.querySelector(".movie__header");
+  const ratingCurrent = document.querySelector(".rating__current");
+  const description = document.querySelector(".about__movie-text");
+  const genreBlock = document.querySelector(".about__movie-genre");
+  const castBlock = document.querySelector(".cast__block");
+  const ratingInput = document.querySelector(".popup__input");
+  const ratingBtn = document.querySelector(".popup__btn");
+  const popup = document.querySelector(".popup");
+  const movieImg = document.querySelector(".movie__block-img");
 
-    movieImg.src = `../assets/images/${id}.jpg`;
+  setMovieImage(movieImg, id);
+  setMovieHeader(movieHeader, movie.title);
+  setRatingCurrent(ratingCurrent, movie.rating);
+  setDescription(description, movie.description);
+  setGenres(genreBlock, movie.genre);
+  setCastBlock(castBlock, movie.actors);
+  addRatingEventListeners(ratingCurrent, ratingInput, ratingBtn, popup);
+}
 
-    movieHeader.textContent = movie.title;
-    ratingCurrent.textContent = movie.rating.toFixed(1);
-    description.textContent = movie.description;
-    if (parseFloat(ratingCurrent.textContent) > 8) {
-      ratingCurrent.classList.add("green");
-      ratingCurrent.classList.remove("yellow", "red");
-    } else if (parseFloat(ratingCurrent.textContent) > 4) {
-      ratingCurrent.classList.add("yellow");
-      ratingCurrent.classList.remove("green", "red");
-    } else {
-      ratingCurrent.classList.add("red");
-      ratingCurrent.classList.remove("green", "yellow");
-    }
+function setMovieImage(element, id) {
+  element.src = `../assets/images/${id}.jpg`;
+}
 
-    genreBlock.innerHTML = "";
-    movie.genre.forEach((genre) => {
-      const genreElement = document.createElement("div");
-      genreElement.classList.add("genre");
-      genreElement.textContent = genre;
-      genreBlock.appendChild(genreElement);
-    });
+function setMovieHeader(element, title) {
+  element.textContent = title;
+}
 
-    castBlock.innerHTML = "";
-    movie.actors.forEach((actor) => {
-      const actorElement = document.createElement("div");
-      actorElement.classList.add("cast__block-hero");
-      const actorName = document.createElement("p");
-      actorName.classList.add("cast__hero-name");
-      actorName.textContent = actor.name;
-      actorElement.appendChild(actorName);
-      castBlock.appendChild(actorElement);
+function setRatingCurrent(element, rating) {
+  element.textContent = rating.toFixed(1);
 
-      const lastName = actor.name.split(" ")[1].toLowerCase();
-      const actorImage = document.createElement("img");
-      actorImage.src = `../assets/images/actors/${lastName}.jpg`;
-      actorElement.prepend(actorImage);
-    });
-
-    ratingCurrent.addEventListener("mouseover", () => {
-      popup.style.display = "block";
-    });
-
-    ratingBtn.addEventListener("click", (event) => {
-      event.preventDefault();
-      const newRating = parseFloat(ratingInput.value);
-      const currentRating = parseFloat(ratingCurrent.textContent);
-      const averageRating = (newRating + currentRating) / 2;
-      ratingCurrent.textContent = averageRating.toFixed(1);
-      popup.style.display = "none";
-
-      if (averageRating > 8) {
-        ratingCurrent.classList.add("green");
-        ratingCurrent.classList.remove("yellow", "red");
-      } else if (averageRating > 4) {
-        ratingCurrent.classList.add("yellow");
-        ratingCurrent.classList.remove("green", "red");
-      } else {
-        ratingCurrent.classList.add("red");
-        ratingCurrent.classList.remove("green", "yellow");
-      }
-    });
+  if (parseFloat(element.textContent) > 8) {
+    element.classList.add("green");
+    element.classList.remove("yellow", "red");
+  } else if (parseFloat(element.textContent) > 4) {
+    element.classList.add("yellow");
+    element.classList.remove("green", "red");
+  } else {
+    element.classList.add("red");
+    element.classList.remove("green", "yellow");
   }
 }
 
-fillMovieDetails(2);
+function setDescription(element, description) {
+  element.textContent = description;
+}
+
+function setGenres(element, genres) {
+  element.innerHTML = "";
+  genres.forEach((genre) => {
+    const genreElement = document.createElement("div");
+    genreElement.classList.add("genre");
+    genreElement.textContent = genre;
+    element.appendChild(genreElement);
+  });
+}
+
+function setCastBlock(element, actors) {
+  element.innerHTML = "";
+  actors.forEach((actor) => {
+    const actorElement = document.createElement("div");
+    actorElement.classList.add("cast__block-hero");
+    const actorName = document.createElement("p");
+    actorName.classList.add("cast__hero-name");
+    actorName.textContent = actor.name;
+    actorElement.appendChild(actorName);
+    element.appendChild(actorElement);
+
+    const lastName = actor.name.split(" ")[1].toLowerCase();
+    const actorImage = document.createElement("img");
+    actorImage.src = `../assets/images/actors/${lastName}.jpg`;
+    actorElement.prepend(actorImage);
+  });
+}
+
+function addRatingEventListeners(
+  element,
+  inputElement,
+  buttonElement,
+  popupElement
+) {
+  element.addEventListener("mouseover", () => {
+    popupElement.style.display = "block";
+  });
+
+  buttonElement.addEventListener("click", (event) => {
+    event.preventDefault();
+    const newRating = parseFloat(inputElement.value);
+    const currentRating = parseFloat(element.textContent);
+    const averageRating = (newRating + currentRating) / 2;
+    element.textContent = averageRating.toFixed(1);
+    popupElement.style.display = "none";
+
+    if (averageRating > 8) {
+      element.classList.add("green");
+      element.classList.remove("yellow", "red");
+    } else if (averageRating > 4) {
+      element.classList.add("yellow");
+      element.classList.remove("green", "red");
+    } else {
+      element.classList.add("red");
+      element.classList.remove("green", "yellow");
+    }
+  });
+}
+
+fillMovieDetails(1);
