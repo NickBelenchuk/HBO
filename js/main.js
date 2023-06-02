@@ -15,10 +15,23 @@ function fillMovieDetails(id) {
     const ratingInput = document.querySelector(".popup__input");
     const ratingBtn = document.querySelector(".popup__btn");
     const popup = document.querySelector(".popup");
+    const movieImg = document.querySelector(".movie__block-img");
+
+    movieImg.src = `../assets/images/${id}.jpg`;
 
     movieHeader.textContent = movie.title;
     ratingCurrent.textContent = movie.rating.toFixed(1);
     description.textContent = movie.description;
+    if (parseFloat(ratingCurrent.textContent) > 8) {
+      ratingCurrent.classList.add("green");
+      ratingCurrent.classList.remove("yellow", "red");
+    } else if (parseFloat(ratingCurrent.textContent) > 4) {
+      ratingCurrent.classList.add("yellow");
+      ratingCurrent.classList.remove("green", "red");
+    } else {
+      ratingCurrent.classList.add("red");
+      ratingCurrent.classList.remove("green", "yellow");
+    }
 
     genreBlock.innerHTML = "";
     movie.genre.forEach((genre) => {
@@ -55,8 +68,19 @@ function fillMovieDetails(id) {
       const averageRating = (newRating + currentRating) / 2;
       ratingCurrent.textContent = averageRating.toFixed(1);
       popup.style.display = "none";
+
+      if (averageRating > 8) {
+        ratingCurrent.classList.add("green");
+        ratingCurrent.classList.remove("yellow", "red");
+      } else if (averageRating > 4) {
+        ratingCurrent.classList.add("yellow");
+        ratingCurrent.classList.remove("green", "red");
+      } else {
+        ratingCurrent.classList.add("red");
+        ratingCurrent.classList.remove("green", "yellow");
+      }
     });
   }
 }
 
-fillMovieDetails(1);
+fillMovieDetails(2);

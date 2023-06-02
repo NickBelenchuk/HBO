@@ -907,6 +907,15 @@ body::-webkit-scrollbar {
   line-height: 24px;
   color: #ADBF3A;
 }
+.movie__container .movie__block-header .movie__rating .rating .green {
+  color: #64C342;
+}
+.movie__container .movie__block-header .movie__rating .rating .yellow {
+  color: #ADBF3A;
+}
+.movie__container .movie__block-header .movie__rating .rating .red {
+  color: #CA3838;
+}
 .movie__container .movie__block-header .movie__rating .rating .rating__max {
   font-family: "Poppins";
   font-style: normal;
@@ -921,6 +930,7 @@ body::-webkit-scrollbar {
 }
 .movie__container .movie__block-content .movie__block-img {
   width: 200px;
+  height: 250px;
   margin-right: 20px;
 }
 .movie__container .movie__block-content .about__movie-text {
