@@ -33,13 +33,8 @@ const setElementText = (element, text) => {
 
 const setRatingColor = (rating, element) => {
   const ratingValue = parseFloat(rating);
-  if (ratingValue > 8) {
-    element.style.color = "#64C342";
-  } else if (ratingValue > 4) {
-    element.style.color = "#ADBF3A";
-  } else {
-    element.style.color = "#CA3838";
-  }
+  element.style.color =
+    ratingValue > 8 ? "#64C342" : ratingValue > 4 ? "#ADBF3A" : "#CA3838";
 };
 
 const setGenres = (element, genres) => {
