@@ -1,6 +1,6 @@
 import { DataMovies } from "./data.js";
 
-function fillMovieDetails(id) {
+const fillMovieDetails = (id) => {
   const movie = DataMovies.find((movie) => movie.id === id);
 
   const movieHeader = document.querySelector(".movie__header");
@@ -13,76 +13,88 @@ function fillMovieDetails(id) {
   const popup = document.querySelector(".popup");
   const movieImg = document.querySelector(".movie__block-img");
 
-  setMovieImage(movieImg, id);
-  setMovieHeader(movieHeader, movie.title);
-  setRatingCurrent(ratingCurrent, movie.rating);
-  setDescription(description, movie.description);
+  setElementImage(movieImg, `../assets/images/${id}.jpg`);
+  setElementText(movieHeader, movie.title);
+  setElementText(ratingCurrent, movie.rating.toFixed(1));
+  setRatingColor(ratingCurrent.textContent, ratingCurrent);
+  setElementText(description, movie.description);
   setGenres(genreBlock, movie.genre);
   setCastBlock(castBlock, movie.actors);
   addRatingEventListeners(ratingCurrent, ratingInput, ratingBtn, popup);
-}
+};
 
-function setMovieImage(element, id) {
-  element.src = `../assets/images/${id}.jpg`;
-}
+const setElementImage = (element, imagePath) => {
+  element.src = imagePath;
+};
 
-function setMovieHeader(element, title) {
-  element.textContent = title;
-}
+const setElementText = (element, text) => {
+  element.textContent = text;
+};
 
-function setRatingCurrent(element, rating) {
-  element.textContent = rating.toFixed(1);
-
-  if (parseFloat(element.textContent) > 8) {
-    element.classList.add("green");
-    element.classList.remove("yellow", "red");
-  } else if (parseFloat(element.textContent) > 4) {
-    element.classList.add("yellow");
-    element.classList.remove("green", "red");
+const setRatingColor = (rating, element) => {
+  const ratingValue = parseFloat(rating);
+  if (ratingValue > 8) {
+    element.style.color = "#64C342";
+  } else if (ratingValue > 4) {
+    element.style.color = "#ADBF3A";
   } else {
-    element.classList.add("red");
-    element.classList.remove("green", "yellow");
+    element.style.color = "#CA3838";
   }
-}
+};
 
-function setDescription(element, description) {
-  element.textContent = description;
-}
-
-function setGenres(element, genres) {
+const setGenres = (element, genres) => {
   element.innerHTML = "";
   genres.forEach((genre) => {
-    const genreElement = document.createElement("div");
-    genreElement.classList.add("genre");
-    genreElement.textContent = genre;
+    const genreElement = createGenreElement(genre);
     element.appendChild(genreElement);
   });
-}
+};
 
-function setCastBlock(element, actors) {
+const createGenreElement = (genre) => {
+  const genreElement = document.createElement("div");
+  genreElement.classList.add("genre");
+  genreElement.textContent = genre;
+  return genreElement;
+};
+
+const setCastBlock = (element, actors) => {
   element.innerHTML = "";
   actors.forEach((actor) => {
-    const actorElement = document.createElement("div");
-    actorElement.classList.add("cast__block-hero");
-    const actorName = document.createElement("p");
-    actorName.classList.add("cast__hero-name");
-    actorName.textContent = actor.name;
-    actorElement.appendChild(actorName);
+    const actorElement = createActorElement(actor);
     element.appendChild(actorElement);
-
-    const lastName = actor.name.split(" ")[1].toLowerCase();
-    const actorImage = document.createElement("img");
-    actorImage.src = `../assets/images/actors/${lastName}.jpg`;
-    actorElement.prepend(actorImage);
   });
-}
+};
 
-function addRatingEventListeners(
+const createActorElement = (actor) => {
+  const actorElement = document.createElement("div");
+  actorElement.classList.add("cast__block-hero");
+  const actorImage = createActorImage(actor);
+  actorElement.appendChild(actorImage);
+  const actorName = createActorName(actor);
+  actorElement.appendChild(actorName);
+  return actorElement;
+};
+
+const createActorImage = (actor) => {
+  const actorImage = document.createElement("img");
+  const lastName = actor.name.split(" ")[1].toLowerCase();
+  actorImage.src = `../assets/images/actors/${lastName}.jpg`;
+  return actorImage;
+};
+
+const createActorName = (actor) => {
+  const actorName = document.createElement("p");
+  actorName.classList.add("cast__hero-name");
+  actorName.textContent = actor.name;
+  return actorName;
+};
+
+const addRatingEventListeners = (
   element,
   inputElement,
   buttonElement,
   popupElement
-) {
+) => {
   element.addEventListener("mouseover", () => {
     popupElement.style.display = "block";
   });
@@ -91,21 +103,15 @@ function addRatingEventListeners(
     event.preventDefault();
     const newRating = parseFloat(inputElement.value);
     const currentRating = parseFloat(element.textContent);
-    const averageRating = (newRating + currentRating) / 2;
-    element.textContent = averageRating.toFixed(1);
-    popupElement.style.display = "none";
-
-    if (averageRating > 8) {
-      element.classList.add("green");
-      element.classList.remove("yellow", "red");
-    } else if (averageRating > 4) {
-      element.classList.add("yellow");
-      element.classList.remove("green", "red");
+    if (newRating >= 0 && newRating <= 10) {
+      const averageRating = (newRating + currentRating) / 2;
+      setElementText(element, averageRating.toFixed(1));
+      popupElement.style.display = "none";
+      setRatingColor(averageRating.toFixed(1), element);
     } else {
-      element.classList.add("red");
-      element.classList.remove("green", "yellow");
+      alert("Значения должны быть в диапазоне от 0 до 10");
     }
   });
-}
+};
 
 fillMovieDetails(1);
