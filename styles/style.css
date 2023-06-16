@@ -523,9 +523,23 @@ body::-webkit-scrollbar {
 }
 
 .signin {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100000000000000000000000 !important;
+  background-color: #1d1c1c;
   background-image: url("../asset/image/bg_sign_in.png");
   background-repeat: no-repeat;
   background-position: 50% 65%;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 80%;
+}
+.signin .close {
+  color: red;
+  font-size: 20px;
 }
 
 .signin__account {
@@ -1195,7 +1209,25 @@ body::-webkit-scrollbar {
 @media screen and (max-width: 768px) {
   .header__nav {
     display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+  }
+  .header__nav.active {
+    display: flex;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
     flex-direction: column;
+    pointer-events: all;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    animation: fade 0.1s linear;
   }
   .header__nav.open {
     display: flex;
@@ -1203,4 +1235,12 @@ body::-webkit-scrollbar {
   .burger {
     display: block;
   }
+}
+.signin {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
 }/*# sourceMappingURL=style.css.map */
