@@ -3,26 +3,28 @@ import { data } from "./data.js";
 
 ////// burger ////// -- haha it doesn't work  ((sad story ;(
 const burger = () => {
-  /*
-  const burgerBtn = document.querySelector(".burger");
+  const burgerBtn = document.querySelector(".burger__menu");
   const nav = document.querySelector(".header__nav");
 
   burgerBtn.addEventListener("click", () => {
-    if (nav.style.display === "block") {
-      nav.style.display = "none";
-    } else {
-      nav.style.display = "block";
+    nav.classList.contains("active")
+      ? nav.classList.remove("active")
+      : nav.classList.add("active");
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.matchMedia(`(min-width: 768px)`).matches) {
+      nav.classList.remove("active");
     }
   });
-  */
 };
 
 ////// swiper main //////
 const swiperMain = () => {
   const backgroundImages = [
-    "../assets/image/hero__bg2.png",
-    "../assets/image/hero__bg3.png",
-    "../assets/image/hero__bg.png",
+    "./assets/image/hero__bg2.png",
+    "./assets/image/hero__bg3.png",
+    "./assets/image/hero__bg.png",
   ];
 
   const signatureImages = [
@@ -220,8 +222,8 @@ const cutText = (text, maxLength) => {
 
 ////// call func //////
 
+swiperMain();
 cardContent();
 burger();
-swiperMain();
 popup();
 scroll();
