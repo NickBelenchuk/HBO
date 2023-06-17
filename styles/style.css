@@ -141,20 +141,33 @@ body::-webkit-scrollbar {
 }
 
 .range {
+  position: relative;
   max-width: 500px;
   width: 100%;
   -webkit-appearance: none;
   background-color: rgba(255, 255, 255, 0.5);
-  height: 1px;
+  height: 2px;
 }
 
-.range__current {
-  width: 100px;
-  height: 1px;
+.range span {
+  top: 0;
+  left: 0;
+  width: 0%;
+  position: absolute;
   background-color: #e3b100;
   z-index: 50000;
+  animation: rangebar 12s infinite;
+  height: 100%;
 }
 
+@keyframes rangebar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
 .play {
   display: flex;
   align-items: center;
@@ -342,6 +355,11 @@ body::-webkit-scrollbar {
 
 .subsription {
   padding: 81px 0 32px 0;
+}
+@media screen and (max-width: 768px) {
+  .subsription {
+    padding: 15px 0 32px 0;
+  }
 }
 
 .subsription__content {
@@ -791,6 +809,11 @@ body::-webkit-scrollbar {
 
 .container-cartoons .cards {
   position: relative;
+}
+@media screen and (max-width: 425px) {
+  .container-cartoons {
+    display: none;
+  }
 }
 
 .content__show {
