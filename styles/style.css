@@ -58,6 +58,11 @@ body::-webkit-scrollbar {
     padding: 0;
   }
 }
+@media only screen and (max-width: 767px) {
+  .header .container__header {
+    padding: 0 30px;
+  }
+}
 
 .nav__links {
   display: flex;
@@ -142,7 +147,7 @@ body::-webkit-scrollbar {
   .burger__menu {
     display: block;
     position: fixed;
-    right: 10px;
+    right: 20px;
   }
 }
 
@@ -176,9 +181,14 @@ body::-webkit-scrollbar {
   max-width: 1274px;
   height: 595px;
   width: 100%;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 63.19%, #000000 100%), url("../assets/image/hero__bg.png");
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 63.19%, #000000 100%), url("../assets/image/hero__bg1.png");
   background-repeat: no-repeat;
   background-position: center;
+}
+@media screen and (max-width: 767px) {
+  .container__hero {
+    margin-top: 89px;
+  }
 }
 
 .hero__block {
@@ -199,6 +209,11 @@ body::-webkit-scrollbar {
   -o-object-fit: scale-down;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
+@media screen and (max-width: 768px) {
+  .hero__block-signature {
+    width: 98%;
+  }
+}
 
 .range {
   position: relative;
@@ -216,7 +231,7 @@ body::-webkit-scrollbar {
   position: absolute;
   background-color: #e3b100;
   z-index: 50000;
-  animation: rangebar 12s infinite;
+  animation: rangebar 12s linear infinite;
   height: 100%;
 }
 
@@ -281,6 +296,11 @@ body::-webkit-scrollbar {
   position: relative;
   height: 300px;
 }
+@media screen and (max-width: 425px) {
+  .original__content {
+    height: 100%;
+  }
+}
 
 .cards {
   display: flex;
@@ -327,6 +347,17 @@ body::-webkit-scrollbar {
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 100;
+}
+@media screen and (max-width: 425px) {
+  .card__image {
+    width: 147px;
+    height: 210px;
+    border-radius: 12px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 100;
+  }
 }
 
 .card__content {
@@ -430,6 +461,7 @@ body::-webkit-scrollbar {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 4px;
   }
 }
 
@@ -442,8 +474,8 @@ body::-webkit-scrollbar {
 }
 @media (max-width: 768px) {
   .subsription__header {
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 32px;
+    line-height: 38px;
   }
 }
 
@@ -464,6 +496,14 @@ body::-webkit-scrollbar {
 }
 @media (max-width: 768px) {
   .item__header {
+    font-size: 32px;
+    line-height: 38px;
+  }
+}
+@media (max-width: 520px) {
+  .item__header {
+    padding-left: 18px;
+    text-align: left;
     font-size: 16px;
     line-height: 19px;
   }
@@ -488,7 +528,20 @@ body::-webkit-scrollbar {
   background: linear-gradient(90deg, rgba(0, 89, 193, 0.7) 0%, rgba(13, 0, 123, 0.7) 100%);
 }
 @media (max-width: 768px) {
+  .item:not(.item-center) {
+    opacity: 1;
+    filter: none;
+    background: linear-gradient(90deg, rgba(0, 89, 193, 0.25) 0%, rgba(13, 0, 123, 0.25) 100%);
+    border: 1px solid rgba(0, 89, 193, 0.5);
+    width: 98%;
+  }
+}
+@media (max-width: 768px) {
   .item {
+    filter: none;
+    opacity: 1;
+    background: linear-gradient(90deg, rgba(0, 89, 193, 0.25) 0%, rgba(13, 0, 123, 0.25) 100%);
+    border: 1px solid rgba(0, 89, 193, 0.5);
     width: 98%;
   }
 }
@@ -496,6 +549,11 @@ body::-webkit-scrollbar {
 .item__list {
   color: #ffffff;
   padding-left: 56px;
+}
+@media screen and (max-width: 520px) {
+  .item__list {
+    padding-left: 30px;
+  }
 }
 
 .item__list-item {
@@ -507,7 +565,13 @@ body::-webkit-scrollbar {
 }
 @media (max-width: 768px) {
   .item__list-item {
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 14px;
+  }
+}
+@media (max-width: 520px) {
+  .item__list-item {
+    font-size: 12px;
     line-height: 14px;
   }
 }
@@ -554,6 +618,7 @@ body::-webkit-scrollbar {
 }
 @media (max-width: 768px) {
   .btn__yellow {
+    background: #E38B00;
     width: 95%;
   }
 }
@@ -591,6 +656,11 @@ body::-webkit-scrollbar {
 @media (max-width: 768px) {
   .item-left {
     margin: 0;
+    opacity: none;
+    filter: none;
+    background: linear-gradient(90deg, rgba(0, 89, 193, 0.25) 0%, rgba(13, 0, 123, 0.25) 100%);
+    border: 1px solid rgba(0, 89, 193, 0.5);
+    width: 98%;
   }
 }
 
@@ -603,6 +673,10 @@ body::-webkit-scrollbar {
 @media (max-width: 768px) {
   .item-right {
     margin: 0;
+    filter: none;
+    background: linear-gradient(90deg, rgba(0, 89, 193, 0.25) 0%, rgba(13, 0, 123, 0.25) 100%);
+    border: 1px solid rgba(0, 89, 193, 0.5);
+    width: 98%;
   }
 }
 
@@ -867,6 +941,12 @@ body::-webkit-scrollbar {
 .container-movies .cards {
   position: relative;
 }
+@media screen and (max-width: 425px) {
+  .container-shows,
+  .container-movies {
+    margin-bottom: 20px;
+  }
+}
 
 .container-cartoons {
   padding-right: 0px;
@@ -1118,8 +1198,15 @@ body::-webkit-scrollbar {
 .content__show .container-cartoons .original__content .cards {
   -moz-column-gap: 16px;
        column-gap: 16px;
-  height: 300px !important;
+  height: 300px;
   overflow-y: hidden !important;
+}
+@media screen and (max-width: 425px) {
+  .content__show .container-shows .original__content .cards,
+  .content__show .container-movies .original__content .cards,
+  .content__show .container-cartoons .original__content .cards {
+    height: 100%;
+  }
 }
 
 .movie__container {
