@@ -128,11 +128,14 @@ body::-webkit-scrollbar {
   justify-content: center;
   gap: 26px;
   padding-top: 340px;
+  max-height: 738px;
 }
 
 .hero__block-signature {
   max-width: -moz-fit-content;
   max-width: fit-content;
+  max-width: 530px;
+  max-height: 110px;
   width: 100%;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
@@ -310,6 +313,7 @@ body::-webkit-scrollbar {
   line-height: 13px;
   color: #e8e8e8;
   margin-bottom: 48px;
+  height: 52px;
 }
 
 .card__btn {
@@ -374,6 +378,12 @@ body::-webkit-scrollbar {
   margin-bottom: 35px;
   color: #ffffff;
 }
+@media (max-width: 1100px) {
+  .item__header {
+    font-size: 20px;
+    line-height: 19px;
+  }
+}
 @media (max-width: 768px) {
   .item__header {
     font-size: 16px;
@@ -431,6 +441,12 @@ body::-webkit-scrollbar {
   gap: 10px;
   margin-right: 32px;
   margin-top: 32px;
+}
+@media (max-width: 1100px) {
+  .item__btns {
+    justify-content: center;
+    margin-right: 0;
+  }
 }
 @media (max-width: 768px) {
   .item__btns {
@@ -529,17 +545,22 @@ body::-webkit-scrollbar {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100000000000000000000000 !important;
-  background-color: #1d1c1c;
+  background-color: #000000;
   background-image: url("../asset/image/bg_sign_in.png");
   background-repeat: no-repeat;
   background-position: 50% 65%;
   padding: 20px;
   border-radius: 10px;
   max-width: 80%;
+  min-width: 320px;
 }
 .signin .close {
   color: red;
   font-size: 20px;
+  cursor: pointer;
+}
+.signin .close img {
+  float: right;
 }
 
 .signin__account {
@@ -565,6 +586,7 @@ body::-webkit-scrollbar {
   line-height: 29px;
   color: #ffffff;
   margin-bottom: 32px;
+  display: none;
 }
 
 .signin__account-subhader {
@@ -576,6 +598,7 @@ body::-webkit-scrollbar {
   gap: 35px;
   justify-content: center;
   margin-bottom: 32px;
+  display: none;
 }
 
 .signin__card {
@@ -1008,6 +1031,8 @@ body::-webkit-scrollbar {
 .content__show .container-cartoons .original__content .cards {
   -moz-column-gap: 16px;
        column-gap: 16px;
+  height: 300px !important;
+  overflow-y: hidden !important;
 }
 
 .movie__container {
@@ -1212,9 +1237,6 @@ body::-webkit-scrollbar {
     position: fixed;
     left: 0;
     top: 0;
-    height: 100vh;
-    width: 100vw;
-    display: none;
   }
   .header__nav.active {
     display: flex;
