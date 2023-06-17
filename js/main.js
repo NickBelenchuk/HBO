@@ -159,6 +159,56 @@ const cardContent = () => {
   });
 };
 
+////// scroll  //////
+const scroll = () => {
+  const links = document.querySelectorAll(".link");
+  // console.log(links);
+
+  links.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const target = link.getAttribute("data-scroll-to");
+      const targetElement = document.querySelector(`.${target}`);
+
+      // console.log(target);
+
+      if (targetElement) {
+        smoothScrollTo(targetElement);
+      }
+    });
+  });
+
+  const smoothScrollTo = (targetElement) => {
+    const targetPosition = targetElement.offsetTop;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 1000;
+
+    // console.log(targetPosition);
+    // console.log(startPosition);
+
+    let start = null;
+
+    const animation = (currentTime) => {
+      if (start === null) start = currentTime;
+      const timeElapsed = currentTime - start;
+      const scrollY = ease(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, scrollY);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    };
+
+    const ease = (t, b, c, d) => {
+      t /= d / 2;
+      if (t < 1) return (c / 2) * t * t + b;
+      t--;
+      return (-c / 2) * (t * (t - 2) - 1) + b;
+    };
+
+    requestAnimationFrame(animation);
+  };
+};
+
 ////// others func //////
 
 const cutText = (text, maxLength) => {
@@ -174,3 +224,4 @@ cardContent();
 burger();
 swiperMain();
 popup();
+scroll();
