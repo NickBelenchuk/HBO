@@ -1,5 +1,4 @@
 import { data } from "./data.js";
-console.log(data[31].description.length);
 // console.log(data);
 
 ////// burger ////// -- haha it doesn't work  ((sad story ;(
