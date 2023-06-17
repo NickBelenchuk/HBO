@@ -1,52 +1,36 @@
 import { data } from "./data.js";
 // console.log(data);
 
-////// burger ////// -- haha it doesn't work  ((sad story ;(
+////// burger //////
 const burger = () => {
-  /*
-  const burgerBtn = document.querySelector(".burger");
+  const burgerBtn = document.querySelector(".burger__menu");
   const nav = document.querySelector(".header__nav");
 
   burgerBtn.addEventListener("click", () => {
-    if (nav.style.display === "block") {
-      nav.style.display = "none";
-    } else {
-      nav.style.display = "block";
+    nav.classList.toggle("active");
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.matchMedia(`(min-width: 768px)`).matches) {
+      nav.classList.remove("active");
     }
   });
-  */
 };
 
 ////// swiper main //////
 const swiperMain = () => {
-  const backgroundImages = [
-    "../assets/image/hero__bg2.png",
-    "../assets/image/hero__bg3.png",
-    "../assets/image/hero__bg.png",
-  ];
-
-  const signatureImages = [
-    "./assets/image/signature2.png",
-    "./assets/image/signature3.png",
-    "./assets/image/signature.png",
-  ];
-
   const container = document.querySelector(".container__hero");
   const signature = document.querySelector(".hero__block-signature");
 
-  let currentImageIndex = 0;
-
-  const changeBackgroundAndSignature = () => {
-    container.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0) 63.19%, #000000 100%), url("${backgroundImages[currentImageIndex]}")`;
-    signature.src = signatureImages[currentImageIndex];
-
-    currentImageIndex++;
-    if (currentImageIndex === backgroundImages.length) {
-      currentImageIndex = 0;
+  let index = 1;
+  setInterval(() => {
+    index += 1;
+    if (index === 4) {
+      index = 1;
     }
-  };
-
-  setInterval(changeBackgroundAndSignature, 4000);
+    container.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0) 63.19%, #000000 100%), url(./assets/image/hero__bg${index}.png`;
+    signature.src = `./assets/image/signature${index}.png`;
+  }, 4000);
 };
 
 ////// popup //////
@@ -56,25 +40,30 @@ const popup = () => {
   const signinSection = document.getElementById("signin-section");
   const closePopup = document.getElementById("close");
 
-  signinBtn.addEventListener("click", () => {
-    signinSection.style.display = "block";
-  });
-  closePopup.addEventListener("click", () => {
-    signinSection.style.display = "none";
-  });
+  const togglePopup = () => {
+    signinSection.style.display =
+      signinSection.style.display === "block" ? "none" : "block";
+  };
+
+  signinBtn.addEventListener("click", togglePopup);
+  closePopup.addEventListener("click", togglePopup);
 };
 
 ////// render content //////
 
 const cardContent = () => {
-  const createCard = (data) => {
-    const truncatedDescription = cutText(data.description, 150);
-    const cutTitle = cutText(data.title, 15);
+  const moviesContainer = document.querySelector(".cards__movies");
+  const cartoonsContainer = document.querySelector(".cards__cartoons");
+  const showsContainer = document.querySelector(".cards__show");
+  const filterItems = (arr, type) => arr.filter((movie) => movie.type === type);
+  const createCard = (el) => {
+    const truncatedDescription = cutText(el.description, 150);
+    const cutTitle = cutText(el.title, 15);
     return `
                 <div class="card">
               <div
                 class="card__image"
-                style="background-image: url('${data.image}')"
+                style="background-image: url('${el.image}')"
               ></div>
               <div class="card__content">
                 <div class="card__rating">
@@ -100,9 +89,9 @@ const cardContent = () => {
                         </clipPath>
                       </defs>
                     </svg>
-                    ${data.rating}
+                    ${el.rating}
                   </span>
-                  <span class="card__rating-date">${data.year}</span>
+                  <span class="card__rating-date">${el.year}</span>
                 </div>
                 <p class="card__season">Season 1</p>
                 <h2 class="card__title">${cutTitle}</h2>
@@ -138,40 +127,33 @@ const cardContent = () => {
     `;
   };
 
-  const moviesContainer = document.querySelector(".cards__movies");
-  const cartoonsContainer = document.querySelector(".cards__cartoons");
-  const showsContainer = document.querySelector(".cards__show");
+  const displayCards = (container, type) => {
+    filterItems(data, type).forEach((el) => {
+      container.innerHTML += createCard(el);
+    });
+  };
 
-  // console.log(moviesContainer);
-  // console.log(cartoonsContainer);
-  // console.log(showsContainer);
-
-  data.forEach((item) => {
-    const cardHTML = createCard(item);
-    if (item.type === "movie") {
-      moviesContainer.insertAdjacentHTML("beforeend", cardHTML);
-    } else if (item.type === "cartoon") {
-      cartoonsContainer.insertAdjacentHTML("beforeend", cardHTML);
-    } else if (item.type === "show") {
-      showsContainer.insertAdjacentHTML("beforeend", cardHTML);
-      showsContainer.classList.add("card__active");
-    }
-  });
+  displayCards(moviesContainer, "movie");
+  displayCards(cartoonsContainer, "cartoon");
+  displayCards(showsContainer, "show");
 };
 
 ////// scroll  //////
 const scroll = () => {
   const links = document.querySelectorAll(".link");
-  // console.log(links);
 
   links.forEach((link) => {
     link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
+
+      if (href && !href.startsWith("#")) {
+        return;
+      }
+
       e.preventDefault();
 
       const target = link.getAttribute("data-scroll-to");
       const targetElement = document.querySelector(`.${target}`);
-
-      // console.log(target);
 
       if (targetElement) {
         smoothScrollTo(targetElement);
@@ -184,9 +166,6 @@ const scroll = () => {
     const startPosition = window.pageYOffset;
     const distance = targetPosition - startPosition;
     const duration = 1000;
-
-    // console.log(targetPosition);
-    // console.log(startPosition);
 
     let start = null;
 
@@ -220,8 +199,8 @@ const cutText = (text, maxLength) => {
 
 ////// call func //////
 
+swiperMain();
 cardContent();
 burger();
-swiperMain();
 popup();
 scroll();
