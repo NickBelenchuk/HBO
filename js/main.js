@@ -1,4 +1,5 @@
 import { data } from "./data.js";
+import { cardSlider } from "./cardSlider.js";
 // console.log(data);
 
 ////// burger //////
@@ -204,3 +205,4 @@ cardContent();
 burger();
 popup();
 scroll();
+cardSlider();
