@@ -102,7 +102,7 @@ body::-webkit-scrollbar {
 
 .header__nav {
   display: flex;
-  width: 70%;
+  width: 75%;
   justify-content: space-between;
 }
 .header__nav.active {
@@ -474,7 +474,7 @@ body::-webkit-scrollbar {
 }
 @media (max-width: 768px) {
   .subsription__header {
-    font-size: 32px;
+    font-size: 24px;
     line-height: 38px;
   }
 }
@@ -688,6 +688,89 @@ body::-webkit-scrollbar {
   .item-center {
     margin: 0;
   }
+}
+
+.faq {
+  padding-bottom: 50px;
+}
+.faq .container__faq .faq__header {
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 38px;
+  margin-bottom: 24px;
+  color: #ffffff;
+}
+@media (max-width: 768px) {
+  .faq .container__faq .faq__header {
+    font-size: 24px;
+    line-height: 29px;
+  }
+}
+.faq .container__faq .faq__block {
+  background: #21212C;
+  border-radius: 6px 6px 0px 0px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.faq .container__faq .faq__block-accordion .accordion__main {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  align-items: center;
+}
+.faq .container__faq .faq__block-accordion .accordion__main-header {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+}
+.faq .container__faq .faq__block-accordion .accordion__main .accordion__main-btn {
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background-color: black;
+  transition: transform 0.3s ease;
+  background: #9E00FF;
+  border-radius: 12px;
+}
+.faq .container__faq .faq__block-accordion .accordion__main .accordion__main-btn.active {
+  transform: rotate(90deg);
+}
+.faq .container__faq .faq__block-accordion .accordion__main .accordion__main-btn.active:before,
+.faq .container__faq .faq__block-accordion .accordion__main .accordion__main-btn.active:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  background: #9E00FF;
+}
+.faq .container__faq .faq__block-accordion .accordion__main .accordion__main-btn.active:before {
+  transform: rotate(-90deg);
+  top: -6px;
+  left: 4px;
+}
+.faq .container__faq .faq__block-accordion .accordion__main .accordion__main-btn.active:after {
+  transform: rotate(90deg);
+  top: 6px;
+  left: 4px;
+}
+.faq .container__faq .faq__block-accordion .accordion__text-block {
+  width: 100%;
+  max-height: 0px;
+  transition: max-height 0.4s ease-in-out;
+  overflow: hidden;
+}
+.faq .container__faq .faq__block-accordion .accordion__text-block .accordion__text {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  background: #1B1B24;
+  color: #B7B6DE;
+  padding: 14px 24px;
+}
+.faq .container__faq .faq__block-accordion .accordion__text-block.active {
+  transition: max-height 0.4s ease-in-out;
 }
 
 .signin {
@@ -969,8 +1052,7 @@ body::-webkit-scrollbar {
   background-image: url(../assets/image/footer__bg.png);
   background-repeat: no-repeat;
   background-position: 50% 75%;
-  margin-top: 28px;
-  padding-top: 25px;
+  padding-top: 50px;
 }
 .footer__show .container__footer {
   display: flex;
@@ -1209,18 +1291,17 @@ body::-webkit-scrollbar {
   }
 }
 
-.movie__container {
-  position: relative;
+.movie__section .movie__container {
   background: #2B2B2B;
   color: #ffffff;
   padding: 24px 32px 32px 32px;
 }
-.movie__container .movie__block-header {
+.movie__section .movie__container .movie__block-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 16px;
 }
-.movie__container .movie__block-header .movie__header {
+.movie__section .movie__container .movie__block-header .movie__header {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
@@ -1228,17 +1309,17 @@ body::-webkit-scrollbar {
   line-height: 48px;
   text-transform: uppercase;
 }
-.movie__container .movie__block-header .movie__rating {
+.movie__section .movie__container .movie__block-header .movie__rating {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
 }
-.movie__container .movie__block-header .movie__rating .rating {
+.movie__section .movie__container .movie__block-header .movie__rating .rating {
   color: #8B8B8B;
 }
-.movie__container .movie__block-header .movie__rating .rating .rating__current {
+.movie__section .movie__container .movie__block-header .movie__rating .rating .rating__current {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
@@ -1246,7 +1327,7 @@ body::-webkit-scrollbar {
   line-height: 24px;
   color: #ADBF3A;
 }
-.movie__container .movie__block-header .movie__rating .rating .rating__max {
+.movie__section .movie__container .movie__block-header .movie__rating .rating .rating__max {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
@@ -1254,16 +1335,17 @@ body::-webkit-scrollbar {
   line-height: 24px;
   color: #D9D9D9;
 }
-.movie__container .movie__block-content {
+.movie__section .movie__container .movie__block-content {
   display: flex;
   margin-bottom: 32px;
+  position: relative;
 }
-.movie__container .movie__block-content .movie__block-img {
+.movie__section .movie__container .movie__block-content .movie__block-img {
   width: 200px;
   height: 250px;
   margin-right: 20px;
 }
-.movie__container .movie__block-content .about__movie-text {
+.movie__section .movie__container .movie__block-content .about__movie-text {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 300;
@@ -1272,18 +1354,18 @@ body::-webkit-scrollbar {
   margin-bottom: 18px;
   max-width: 640px;
 }
-.movie__container .movie__block-content .about__movie-genre {
+.movie__section .movie__container .movie__block-content .about__movie-genre {
   display: flex;
   gap: 4px;
   margin-bottom: 36px;
 }
-.movie__container .movie__block-content .about__movie-genre .genre {
+.movie__section .movie__container .movie__block-content .about__movie-genre .genre {
   cursor: pointer;
   padding: 6px 20px;
   text-transform: capitalize;
   background: #383838;
 }
-.movie__container .movie__block-content .about__movie-cast .cast__header {
+.movie__section .movie__container .movie__block-content .about__movie-cast .cast__header {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
@@ -1292,25 +1374,25 @@ body::-webkit-scrollbar {
   color: #8B8B8B;
   margin-bottom: 12px;
 }
-.movie__container .movie__block-content .about__movie-cast .cast__block {
+.movie__section .movie__container .movie__block-content .about__movie-cast .cast__block {
   display: flex;
   gap: 10px;
 }
-.movie__container .movie__block-content .about__movie-cast .cast__block-hero {
+.movie__section .movie__container .movie__block-content .about__movie-cast .cast__block-hero {
   text-align: center;
 }
-.movie__container .movie__block-content .about__movie-cast .cast__block-hero img {
+.movie__section .movie__container .movie__block-content .about__movie-cast .cast__block-hero img {
   border-radius: 50%;
   background: #8B8B8B;
 }
-.movie__container .movie__block-content .about__movie-cast .cast__block-hero .cast__hero-name {
+.movie__section .movie__container .movie__block-content .about__movie-cast .cast__block-hero .cast__hero-name {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 18px;
 }
-.movie__container .movie__block-similar .similar__header {
+.movie__section .movie__container .movie__block-similar .similar__header {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
@@ -1318,17 +1400,34 @@ body::-webkit-scrollbar {
   line-height: 30px;
   margin-bottom: 16px;
 }
-.movie__container .movie__block-similar .similar__movies {
+.movie__section .movie__container .movie__block-similar .similar__movies {
   display: flex;
+  position: relative;
   gap: 10px;
 }
-.movie__container .movie__block-similar .similar__movies-img {
-  width: 108px;
+.movie__section .movie__container .movie__block-similar .similar__movies .similar__movies-block {
+  display: flex;
+  overflow-x: scroll;
+  gap: 5px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-.movie__container .popup {
+.movie__section .movie__container .movie__block-similar .similar__movies .similar__movies-block::-webkit-scrollbar {
+  display: none;
+}
+.movie__section .movie__container .movie__block-similar .similar__movies .similar__movies-block .similar__movies-img {
+  display: block;
+  width: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.movie__section .movie__container .movie__block-similar .similar__movies .similar__movies-block .similar__movies-img:hover {
+  transform: scale(0.95);
+}
+.movie__section .movie__container .popup {
   position: absolute;
   top: 0;
-  right: -149px;
+  right: -5px;
   width: 123px;
   height: 143px;
   background: #D9D9D9;
@@ -1337,21 +1436,20 @@ body::-webkit-scrollbar {
   font-weight: 500;
   text-align: center;
   padding: 14px 30px;
-  display: none;
 }
-.movie__container .popup h5 {
+.movie__section .movie__container .popup h5 {
   line-height: 15px;
   font-size: 10px;
   color: #8B8B8B;
 }
-.movie__container .popup h4 {
+.movie__section .movie__container .popup h4 {
   line-height: 21px;
   text-transform: uppercase;
   font-size: 14px;
   color: #383838;
   margin-bottom: 18px;
 }
-.movie__container .popup .popup__input {
+.movie__section .movie__container .popup .popup__input {
   border: none;
   outline: none;
   width: 63px;
@@ -1360,12 +1458,12 @@ body::-webkit-scrollbar {
   padding: 4px;
   text-align: center;
 }
-.movie__container .popup input::-webkit-outer-spin-button,
-.movie__container .popup input::-webkit-inner-spin-button {
+.movie__section .movie__container .popup input::-webkit-outer-spin-button,
+.movie__section .movie__container .popup input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.movie__container .popup .popup__btn {
+.movie__section .movie__container .popup .popup__btn {
   padding: 1px 14px;
   font-size: 14px;
   line-height: 21px;
