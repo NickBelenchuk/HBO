@@ -17,17 +17,29 @@
           <nav class="nav__links">
             <ul>
               <li>
-                <a class="link" href="#" data-scroll-to="container-shows">
+                <a
+                  class="link"
+                  href="../index.html"
+                  data-scroll-to="container-shows"
+                >
                   series</a
                 >
               </li>
               <li>
-                <a class="link" href="#" data-scroll-to="container-movies">
+                <a
+                  class="link"
+                  href="../index.html"
+                  data-scroll-to="container-movies"
+                >
                   movies</a
                 >
               </li>
               <li>
-                <a class="link" href="#" data-scroll-to="container-cartoons">
+                <a
+                  class="link"
+                  href="../index.html"
+                  data-scroll-to="container-cartoons"
+                >
                   cartoons</a
                 >
               </li>
@@ -38,48 +50,11 @@
           <button class="header__btn button" id="signin-btn">sign in</button>
         </div>
         <div class="burger__menu">
-          <img src="./assets/image/burger_menu.svg" alt="icon" />
+          <img src="../assets/image/burger_menu.svg" alt="icon" />
         </div>
       </div>
     </header>
-    <section class="movie__section">
-      <div class="container movie__container">
-        <div class="movie__block-header">
-          <h1 class="movie__header">`${data.title}`</h1>
-          <div class="movie__rating">
-            <p class="rating">
-              Rating: <span class="rating__current"></span>
-              <span class="rating__max">`${data.rating}` / 10</span>
-            </p>
-          </div>
-        </div>
-        <div class="movie__block-content">
-          <img class="movie__block-img" src="`${data.image}`" alt="movie" />
-          <div class="about__movie">
-            <p class="about__movie-text">${data.description}</p>
-            <div class="about__movie-genre">
-              <span class="genre">${data.genre}</span>
-            </div>
-            <div class="about__movie-cast">
-              <h4 class="cast__header">Cast:</h4>
-              <div class="cast__block"></div>
-            </div>
-          </div>
-          <form class="popup" action="">
-            <h5>Rate this</h5>
-            <h4>Sharper</h4>
-            <input class="popup__input" type="number" max="10" min="0" />
-            <button class="popup__btn" type="submit">rate</button>
-          </form>
-        </div>
-        <div class="movie__block-similar">
-          <h4 class="similar__header">Similar movies</h4>
-          <div class="similar__movies">
-            <div class="similar__movies-block"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="movie__section" id="movie-container"></section>
     <footer class="footer footer__show">
       <div class="container container__footer">
         <div class="support__block">

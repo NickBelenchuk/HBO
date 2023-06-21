@@ -1,15 +1,16 @@
 import { data } from "./data.js";
+import { createMovieContainer } from "./singleMovie.js";
 
 export const cardContent = () => {
   const moviesContainer = document.querySelector(".cards__movies");
   const cartoonsContainer = document.querySelector(".cards__cartoons");
   const showsContainer = document.querySelector(".cards__show");
   const filterItems = (arr, type) => arr.filter((movie) => movie.type === type);
-  const createCard = (el) => {
+  const createCard = (el, index) => {
     const truncatedDescription = cutText(el.description, 150);
     const cutTitle = cutText(el.title, 15);
     return `
-                <div class="card">
+                <a class="card" href="./pages/singleMovie.html?id=${el.id}">
               <div
                 class="card__image"
                 style="background-image: url('${el.image}')"
@@ -45,7 +46,7 @@ export const cardContent = () => {
                 <p class="card__season">Season 1</p>
                 <h2 class="card__title">${cutTitle}</h2>
                 <p class="card__about">${truncatedDescription}</p>
-                <button class="card__btn">
+                <button class="card__btn" data-index="${index}>
                   <span class="card__btn-icon"
                     ><svg
                       width="13"
@@ -72,13 +73,20 @@ export const cardContent = () => {
                   <span class="card__btn-name">watch</span>
                 </button>
               </div>
-            </div>
+            </a>
     `;
   };
 
   const displayCards = (container, type) => {
-    filterItems(data, type).forEach((el) => {
-      container.innerHTML += createCard(el);
+    filterItems(data, type).forEach((el, index) => {
+      const cardElement = document.createElement("a");
+      cardElement.classList.add("card");
+      cardElement.innerHTML = createCard(el, index);
+      cardElement.addEventListener("click", () => {
+        createMovieContainer(el);
+        console.log(el);
+      });
+      container.appendChild(cardElement);
     });
   };
 
