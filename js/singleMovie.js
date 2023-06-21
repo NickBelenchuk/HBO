@@ -1,57 +1,57 @@
 import { data } from "./data.js";
 
-export function renderSingleMovieContent(rank) {
-  const similarMoviesContainer = document.querySelector(
-    ".similar__movies-block"
-  );
+export const createMovieContainer = (data) => {
+  const container = document.createElement("div");
+  container.classList.add("container", "movie__container");
 
-  similarMoviesContainer.innerHTML = "";
+  const movieHTML = `
+    <div class="movie__block-header">
+      <h1 class="movie__header">${data.title}</h1>
+      <div class="movie__rating">
+        <p class="rating">
+          Rating: <span class="rating__current">${data.rating}</span>
+          <span class="rating__max"> / 10</span>
+        </p>
+      </div>
+    </div>
+    <div class="movie__block-content">
+      <img class="movie__block-img" src="${data.image}" alt="movie" />
+      <div class="about__movie">
+        <p class="about__movie-text">${data.description}</p>
+        <div class="about__movie-genre">
+          <span class="genre">${data.genre}</span>
+        </div>
+        <div class="about__movie-cast">
+          <h4 class="cast__header">Cast:</h4>
+          <div class="cast__block"></div>
+        </div>
+      </div>
+      <form class="popup" action="">
+        <h5>Rate this</h5>
+        <h4>Sharper</h4>
+        <input class="popup__input" type="number" max="10" min="0" />
+        <button class="popup__btn" type="submit">rate</button>
+      </form>
+    </div>
+    <div class="movie__block-similar">
+      <h4 class="similar__header">Similar movies</h4>
+      <div class="similar__movies">
+        <div class="similar__movies-block"></div>
+      </div>
+    </div>
+  `;
 
-  function hasMatchingGenre(movie, genre) {
-    return movie.genre.includes(genre);
-  }
+  container.innerHTML = movieHTML;
 
-  function addMovieImage(imageUrl) {
-    const img = document.createElement("img");
-    img.classList.add("similar__movies-img");
-    img.src = imageUrl;
-    img.alt = "movie";
-    similarMoviesContainer.appendChild(img);
-  }
+  return container;
+};
+const params = new URLSearchParams(window.location.search);
+const movieIndex = params.get("id");
+const movieData = data.find((movie) => movie.id === movieIndex);
 
-  const targetMovie = data.find((movie) => movie.rank === rank);
-
-  if (targetMovie) {
-    const targetGenre = targetMovie.genre[0];
-
-    data.forEach((movie) => {
-      if (hasMatchingGenre(movie, targetGenre)) {
-        addMovieImage(movie.image);
-      }
-    });
-  }
-
-  const movieHeader = document.querySelector(".movie__header");
-  const ratingCurrent = document.querySelector(".rating__current");
-  const ratingMax = document.querySelector(".rating__max");
-  const movieImg = document.querySelector(".movie__block-img");
-  const aboutMovieText = document.querySelector(".about__movie-text");
-  const aboutMovieGenre = document.querySelector(".about__movie-genre");
-
-  aboutMovieGenre.innerHTML = "";
-
-  movieHeader.textContent = targetMovie.title;
-  ratingCurrent.textContent = targetMovie.rating;
-  ratingMax.textContent = ` / 10`;
-  movieImg.src = targetMovie.image;
-  aboutMovieText.textContent = targetMovie.description;
-
-  targetMovie.genre.forEach((genre) => {
-    const span = document.createElement("span");
-    span.textContent = genre;
-    span.classList.add("genre");
-    aboutMovieGenre.appendChild(span);
-  });
+if (movieData) {
+  const movieContainer = createMovieContainer(movieData);
+  document.getElementById("movie-container").appendChild(movieContainer);
+} else {
+  console.log("Invalid movie id");
 }
-
-// renderSingleMovieContent(5);
