@@ -779,9 +779,9 @@ body::-webkit-scrollbar {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 100000000000000000000000 !important;
+  z-index: 9999999999 !important;
   background-color: #000000;
-  background-image: url("../asset/image/bg_sign_in.png");
+  background-image: url("../assets/image/bg_sign_in.png");
   background-repeat: no-repeat;
   background-position: 50% 65%;
   padding: 20px;

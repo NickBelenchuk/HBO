@@ -1,5 +1,6 @@
 import { data } from "./data.js";
 import { burger } from "./burger.js";
+import { popUpSignIn } from "./popUpSignIn.js";
 
 export const createMovieContainer = (singleCardData) => {
   const container = document.createElement("div");
@@ -84,3 +85,4 @@ if (movieData) {
 }
 
 burger();
+popUpSignIn();
