@@ -53,7 +53,7 @@ export const createMovieContainer = (singleCardData) => {
             .join("")}</div></div>
             <a class="movie__block-watch" target="_blank" href="${
               singleCardData.trailer
-            }">whatch trailer</a>
+            }">watch the trailer</a>
         </div>
       </div>
     </div>
