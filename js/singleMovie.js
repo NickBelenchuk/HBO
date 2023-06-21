@@ -1,6 +1,6 @@
 import { data } from "./data.js";
 
-function renderSingleMovieContent(rank) {
+export function renderSingleMovieContent(rank) {
   const similarMoviesContainer = document.querySelector(
     ".similar__movies-block"
   );
@@ -54,4 +54,4 @@ function renderSingleMovieContent(rank) {
   });
 }
 
-renderSingleMovieContent(5);
+// renderSingleMovieContent(5);
