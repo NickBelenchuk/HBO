@@ -17,7 +17,7 @@ module.exports = {
     hot: true,
   },
   entry: {
-    main: path.resolve(__dirname, "src", "index.js"),
+    main: path.resolve(__dirname, "src", "js", "main.js"),
     signUp: path.resolve(__dirname, "src", "js", "popUpSignIn.js"),
     singleMovie: path.resolve(__dirname, "src", "js", "singleMovie.js"),
   },
