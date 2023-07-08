@@ -1,8 +1,6 @@
 import { data } from "./data.js";
 import { burger } from "./burger.js";
 import { popUpSignIn } from "./popUpSignIn.js";
-import "../style.css";
-import "../pages/singleMovie.html";
 export const createMovieContainer = (singleCardData) => {
   const container = document.createElement("div");
   container.classList.add("container", "movie__container");
