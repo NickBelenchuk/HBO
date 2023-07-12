@@ -1,6 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 const mode = process.env.NODE_ENV || "development";
 const devMode = mode === "development";
@@ -22,29 +24,37 @@ module.exports = {
     singleMovie: path.resolve(__dirname, "src", "js", "singleMovie.js"),
   },
   output: {
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
-    filename: "[name].[contenthash].js",
-    assetModuleFilename: "assets/[name][ext]",
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src", "index.html"),
       chunks: ["main"],
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "src", "pages", "signUp.html"),
-      filename: "pages/sighUp.html",
+      template: path.resolve(__dirname, "src", "signUp.html"),
+      filename: "./sighUp.html",
       chunks: ["sighUp"],
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "src", "pages", "singleMovie.html"),
-      filename: "pages/singleMovie.html",
+      template: path.resolve(__dirname, "src", "singleMovie.html"),
+      filename: "./singleMovie.html",
       chunks: ["singleMovie"],
     }),
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css",
       chunkFilename: "[id].[contenthash].css",
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "src", "image"),
+          to: path.resolve(__dirname, "dist", "image"),
+        },
+      ],
     }),
   ],
   module: {
@@ -80,31 +90,6 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|webp|gif|svg)$/i,
-        use: devMode
-          ? []
-          : [
-              {
-                loader: "image-webpack-loader",
-                options: {
-                  mozjpeg: {
-                    progressive: true,
-                  },
-                  optipng: {
-                    enabled: false,
-                  },
-                  pngquant: {
-                    quality: [0.65, 0.9],
-                    speed: 4,
-                  },
-                  gifsicle: {
-                    interlaced: false,
-                  },
-                  webp: {
-                    quality: 75,
-                  },
-                },
-              },
-            ],
         type: "asset/resource",
       },
       {

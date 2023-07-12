@@ -8,7 +8,7 @@ export const swiperMain = () => {
     if (index === 4) {
       index = 1;
     }
-    container.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0) 63.19%, #000000 100%), url(./assets/hero__bg${index}.png`;
-    signature.src = `./assets/signature${index}.png`;
+    container.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0) 63.19%, #000000 100%), url(../image/hero__bg${index}.png`;
+    signature.src = `../image/signature${index}.png`;
   }, 4000);
 };
